@@ -8,7 +8,7 @@ export default function Leftbar() {
         <nav className="d-lg-block navigation sidebar-padding">
         <div className="sidebar-sticky">
             <Logo />
-            <Menu class="buscar"/>
+            <Menu class={window.location.pathname}/>
             <Playlists />
         </div>
      </nav>

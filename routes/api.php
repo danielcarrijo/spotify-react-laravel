@@ -24,6 +24,7 @@ Route::get('/playlist/{id}','PlaylistController@show');
  Route::get('/audio/{folder}/{filename}','SongController@listenAudio');
  Route::post('/song','SongController@store');
  Route::get('/song/{id}','SongController@show');
+ 
  Route::post('/artist','ArtistController@store');
  Route::get('/artist','ArtistController@index');
  Route::get('/artist/{id}','ArtistController@show');

@@ -10,6 +10,7 @@ export default function Header(props) {
             location.reload()
         })
     }
+  
     return (
        <div className="bg-dark p-2">
            <div className="row">
@@ -37,7 +38,7 @@ export default function Header(props) {
                     </button>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a className="dropdown-item" href="#">Action</a>
-                        <a className="dropdown-item" href="#">Another action</a>
+                        <span className="dropdown-item">Another action</span>
                         <span className="dropdown-item" onClick={logout}>Logout</span>
                     </div>
                     </div>

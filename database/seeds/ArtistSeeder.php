@@ -22,7 +22,8 @@ class ArtistSeeder extends Seeder
                 'name' => 'Zé Neto e Cristiano'
             ],
             [
-                'name' => 'Lexa'
+                'name' => 'Lexa',
+                'img' => 'lexa.png'
             ],
             [
                 'name' => 'Pedro Sampaio'
@@ -49,7 +50,8 @@ class ArtistSeeder extends Seeder
                 'name' => 'Anitta'
             ],
             [
-                'name' => 'Dilsinho'
+                'name' => 'Dilsinho',
+                'img' => 'dilsinho.png'
             ],
             [
                 'name' => 'Turma do Pagode'

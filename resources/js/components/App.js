@@ -63,7 +63,7 @@ export class App extends Component {
                             <Switch>
                                 <Route
                                     exact path='/'
-                                    render={(props) => <Main {...props} handleSound={this.handleSound} />}
+                                    component={Main}
                                 />
                                 <Route path='/playlist/:id' render={(props) => <ShowPlaylist {...props} handleSound={this.handleSound} />} />
                                 <Route path='/artist/:id' render={(props) => <ShowArtists {...props} handleSound={this.handleSound} />} />

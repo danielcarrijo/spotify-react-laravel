@@ -15,12 +15,6 @@ class ArtistController extends Controller
     public function index()
     {
         $artists = Artist::all();
-        foreach($artists as $artist) {
-            foreach($artist->songs as $song) {
-                return response()->json($song,200);
-            }
-        }
-        
         return response()->json($artists,200);
     }
 

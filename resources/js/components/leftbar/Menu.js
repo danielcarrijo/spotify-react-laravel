@@ -1,13 +1,13 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import React, { Component } from 'react'
-
+import { Link } from 'react-router-dom'
 export class Menu extends Component {
     
      render() {
         return (
             <div>
-            <a href="#" className={`nav-link text-white ${this.props.class == 'inicio' ? 'active' : ''}`}>
+            <Link to="/" className={`nav-link text-white ${this.props.class == '/' ? 'active' : ''}`}>
             <div className="row ml-2"  style={{color: 'white'}}>
                     <div className="col-2">
                         <i style={li} className="fas fa-home "></i>
@@ -16,8 +16,8 @@ export class Menu extends Component {
                         <span style={title}>Início</span>
                     </div>
             </div>
-            </a>
-            <a href="#" className={`nav-link text-white ${this.props.class == 'buscar' ? 'active' : ''}`}>
+            </Link>
+            <a href="#" className={`nav-link text-white ${this.props.class == '/buscar' ? 'active' : ''}`}>
             <div className="row ml-2" style={{color: 'white'}}>
                     <div className="col-2">
                         <i  style={li} className="fas fa-search "></i>

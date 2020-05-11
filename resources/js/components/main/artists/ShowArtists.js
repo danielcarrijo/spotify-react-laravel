@@ -25,7 +25,7 @@ export class ShowArtists extends Component {
         const songs = this.state.songs
         let result = songs.map(song => song.filename);
         return (
-            <div style={{backgroundImage: 'linear-gradient(red, yellow)'}}>
+            <div style={{backgroundImage: 'linear-gradient(#505050, black)'}}>
                 <Title artists = {artists} user={user}/>
                 <div style={{background: '#121212', height:'300px'}} id="songs">
                     <div className="container">

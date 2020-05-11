@@ -13,7 +13,6 @@ export class Songs extends Component {
     render() {
         const songs = this.props.songs
         const artists = this.props.artists
-        const array = [];
         return (
             <div className="container mt-2">
                 {songs.map((song, index) => (
