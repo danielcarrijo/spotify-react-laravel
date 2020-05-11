@@ -45,9 +45,13 @@ and then uncomment what is inside the function "run" in database/seeds/DatabaseS
 ```bash
 php artisan db:seed
 ```
-in order to seed the database
+in order to seed the database, and then
 
 And finally, start the application:
+
+```bash
+php artisan passport:install
+```
 
 ```bash
 php artisan serve
