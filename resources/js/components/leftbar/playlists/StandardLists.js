@@ -1,20 +1,32 @@
 
 import CreateConfirmation from './CreateConfirmation'
 import React, { Component } from 'react'
+import Cookies from 'js-cookie'
+import axios from 'axios'
 
 export class StandardLists extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            playlist : ''                                                
+            title : ''                                                
         }
         this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
     handleChange(e) {
         const { value } = e.target
         this.setState({
-            playlist : value
+            title : value
         })
+    }
+    handleSubmit(e) {
+        e.preventDefault()
+        if(this.state.title!='') {
+            const { title } = this.state
+            axios.post('api/playlist', { title }, {headers : {Accept: 'application/json', Authorization: "Bearer " +  Cookies.get('spotify.jwt')}}).then(response => {
+                window.location.href = "/playlist/"+response.data.id
+            })
+        }
     }
     render() {
         return (
@@ -22,20 +34,11 @@ export class StandardLists extends Component {
             <span style={title} className="ml-4 mb-1">PLAYLISTS</span>
             <ul className="nav flex-column">
                 <li className="nav-item">
-                    <div className="row ml-2 mt-2" >
-                        <div className="col-2">
-                            <div className=" d-flex justify-content-center" style={square}>
-                                <span style={{marginTop: -8}}>+</span>
-                            </div>
-                        </div>
-                        <div className="col-9 ">
-                            <span style={subtitle} className="text-white ml-lg-1 ml-xl-0">Criar minha playlist</span>
-                        </div>
-                        <CreateConfirmation handleChange={this.handleChange}/>
-                    </div>
+                    <CreateConfirmation handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+
                     <div className="row ml-2 mt-2">
                         <div className="col-2">
-                            <img src="img/playlists/likes.png" className="" width="25px" />
+                            <img src="/img/playlists/likes.png" className="" width="25px" />
                         </div>
                         <div className="col-9 ">
                             <span style={subtitle} className="text-white ml-lg-1 ml-xl-0">Minhas Curtidas</span>

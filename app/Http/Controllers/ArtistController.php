@@ -45,8 +45,9 @@ class ArtistController extends Controller
      * @param  \App\Artist  $artist
      * @return \Illuminate\Http\Response
      */
-    public function show(Artist $artist)
+    public function show($id)
     {
+        $artist = Artist::with('songs')->find($id);
         return response()->json($artist);
     }
 

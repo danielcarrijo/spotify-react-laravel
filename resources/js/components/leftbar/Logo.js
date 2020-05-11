@@ -6,7 +6,7 @@ export default function Logo() {
             <li className="nav-item">
                 <div className="row">
                     <div className="col-3 mt-1">
-                        <img src="img/icone.png" className="ml-3"  width="50px"/>
+                        <img src="/img/icone.png" className="ml-3"  width="50px"/>
                     </div>
                     <div className="col-9 mt-2">
                         <span style={title}>Spotify</span>

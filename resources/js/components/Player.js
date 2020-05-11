@@ -29,9 +29,22 @@ export class Player extends Component {
                         this.player.currentTime = 0
                         this.player.play()  
                     }else {
-                        this.setState({
-                            status : 'stopped'
-                        })
+                        if(!this.props.string && this.state.soundtrack.length > 0) {
+                            console.log('to aqui')
+                            const soundtrack = this.state.soundtrack
+                            this.player.src = '/api/audio/'+soundtrack[0]
+                            this.player.play()
+                            soundtrack.shift()
+                            this.setState({
+                                soundtrack : soundtrack,
+                                status: 'playing'
+                            })
+                        }
+                        else {
+                            this.setState({
+                                status : 'stopped'
+                            })
+                        }
                     }
                 }
                 this.setState({
@@ -55,8 +68,17 @@ export class Player extends Component {
     componentDidUpdate(prevProps, prevState) {
         let sound = null
         if(prevProps.soundtrack != this.props.soundtrack)  {
-            sound = "api/audio/"+this.props.soundtrack
+            const soundtrack = this.props.soundtrack
+            console.log(soundtrack)
+            if(this.props.string) {
+                sound = "/api/audio/"+this.props.soundtrack //se for uma música só
             }
+            else {
+                sound = "/api/audio/"+soundtrack[0] //se for uma playlist
+                soundtrack.shift() //removo o elemento da lista
+            }
+            this.setState({soundtrack: soundtrack})
+        }
             if(sound) {
               localStorage.setItem('song',sound)
               this.player.src = sound;
@@ -101,11 +123,11 @@ export class Player extends Component {
         return (
             <div className="container-fluid" style={player} id="player">
                 <span>.</span>
-                <div className="row mt-4">
+                <div className="row">
                     <div className="col-3 d-none d-md-block">
                         <span className="text-white">fdfdf</span>
                     </div>
-                    <div className="col-9 col-md-6">
+                    <div className="col-12 col-md-6">
                     <div className="row justify-content-center">
                         <i className="fas fa-step-backward" style={buttons}></i>
                         {this.state.status != 'playing' 
@@ -129,7 +151,7 @@ export class Player extends Component {
                     </div>
                     <audio id="as" ref={ref => this.player = ref} />
                     </div>
-                    <div className="col-3">
+                    <div className="col-3 d-none d-md-block">
                         <span className="text-white">fdfdf</span>
                     </div>
                 </div>
@@ -143,6 +165,7 @@ export default Player
 
 const player = {
     background : '#282828',
+    marginTop: ''
 }
 
 const buttons = {

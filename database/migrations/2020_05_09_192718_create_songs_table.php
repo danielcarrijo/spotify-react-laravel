@@ -17,7 +17,7 @@ class CreateSongsTable extends Migration
             $table->id();
             $table->unsignedInteger('gender_id');
             $table->string('title');
-            $table->string('img');
+            $table->string('img')->default('none.PNG');
             $table->string('filename');
             $table->timestamps();
         });

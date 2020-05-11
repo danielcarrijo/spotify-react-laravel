@@ -40,6 +40,30 @@ ul::-webkit-scrollbar-thumb {
     border:4px solid #000
 }
 
+.songs:hover {
+    background: #404040;
+    transition : 1s;
+}
+#songs {
+    overflow-x: hidden;
+}
+#songs::-webkit-scrollbar {
+    background-color:#121212;
+    width:16px
+}
+
+/* background of the scrollbar except button or resizer */
+#songs::-webkit-scrollbar-track {
+    background-color:#121212
+}
+
+/* scrollbar itself */
+#songs::-webkit-scrollbar-thumb {
+    background-color:#cecece;
+    border-radius:16px;
+    border:4px solid #121212
+}
+
 /* set button(top and bottom of the scrollbar) */
 ul::-webkit-scrollbar-button {display:none}
 
@@ -47,8 +71,29 @@ ul::-webkit-scrollbar-button {display:none}
     height :213px;
 }
 
+#playlist-img {
+    width: 200px
+}
+
 @media (max-width:1365px) and (max-height: 635px) {
     #playlistscroll {
         height: 191px;
+    }
+}
+
+@media(max-width:992px) {
+    #playlist-img {
+        width: 150px
+    }
+    #player {
+        margin-top:  -1vw;
+    }
+}
+@media(max-width:768px) {
+    #playlist-img {
+        width: 200px
+    }
+    #player {
+        margin-top: 0;
     }
 }

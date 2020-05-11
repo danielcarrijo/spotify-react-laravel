@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import Cookies from 'js-cookie'
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -35,10 +36,19 @@ export default function TransitionsModal(props) {
   };
 
   return (
-    <div style={div}>
-      <button className="badge badge-danger rounded-circle" style={{border: 'none'}}onClick={handleOpen}>
-            X
-      </button>
+    <div>
+        <div className="row ml-2 mt-2" onClick={Cookies.get('spotify.jwt')!= null ? handleOpen : e => {window.location.href = '/login'}}>
+            <div className="col-2">
+                <div className=" d-flex justify-content-center" style={square}>
+                    <span style={{marginTop: -8}}>+</span>
+                </div>
+            </div>
+            <div className="col-9 ">
+                <span style={subtitle} className="text-white ml-lg-1 ml-xl-0">Criar minha playlist</span>
+            </div>
+        </div>
+        {Cookies.get('spotify.jwt')!= null ? 
+        
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -48,7 +58,7 @@ export default function TransitionsModal(props) {
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
-          timeout: 500,
+          timeout: 1000,
           classes: {
               root: classes.backDrop
           } 
@@ -78,23 +88,36 @@ export default function TransitionsModal(props) {
             </div>
             <div className="row justify-content-center mt-3">
               <button className="rounded-pill mr-5 py-2 px-3" style={{background: 'transparent', border: '1px solid white', fontWeight :"bolder", fontSize: '13pt', color:'white', outline:'none'}}onClick={handleClose} >Cancelar</button>
-              <button className="rounded-pill btn btn-success py-2 px-3 " style={{fontWeight :"bolder", fontSize: '13pt'}}>Continuar</button>
+              <button className="rounded-pill btn btn-success py-2 px-3 " style={{fontWeight :"bolder", fontSize: '13pt'}} onClick={props.handleSubmit}>Continuar</button>
             </div>
             
           </div>
         </Fade>
       </Modal>
+      :
+      ''
+    }
     </div>
   );
 }
 
 
-const div = {
-    position: 'absolute',
-    top: '2%',
-    left: '91%'
-}
+
 
 const button = {
     border : 'none'
+}
+const subtitle = {
+    fontSize : '11pt',
+    fontWeight : 'bolder', 
+}
+
+const square = {
+    background: '#cecece',
+    fontSize: '18pt',
+    color: 'black',
+    minHeight: '25px',
+    minWidth: '25px',
+    maxHeight: '25px',
+    maxWidth: '25px'
 }

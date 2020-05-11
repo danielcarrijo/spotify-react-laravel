@@ -47,7 +47,7 @@ class SongController extends Controller
             $song = new Song;
             $song->title = $request->title;
             $song->gender_id = $request->gender_id;
-            $song->img = $request->img;
+            $song->img = $request->img == null ? 'none.png': $request->img;
             $song->filename = $request->filename;
             $song->save();
             foreach($request->artists as $artist_id) {
@@ -76,7 +76,8 @@ class SongController extends Controller
      */
     public function show($id)
     {
-        //
+        $song = Song::with('artists')->find($id);
+        return response()->json($song, 200);
     }
 
     public function listenAudio($folder, $filename) {

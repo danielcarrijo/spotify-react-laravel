@@ -7,7 +7,8 @@ import Header from './Header';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Login from './auth/Login'
-import axios from 'axios';
+import ShowPlaylist from './main/playlist/ShowPlaylist'
+import ShowArtists from './main/artists/ShowArtists';
 
 const user =  () => {
     if (Cookies.get('spotify.jwt') != null) {
@@ -41,10 +42,10 @@ export class App extends Component {
         this.handleSound = this.handleSound.bind(this)
     }
     componentDidMount() {
-        console.log(Cookies.get('spotify.jwt'))
+        // console.log(Cookies.get('spotify.jwt'))
     }
     handleSound(item) {
-        console.log('as')
+        console.log(typeof(item))
         this.setState({
             soundtrack: item
         })
@@ -54,21 +55,24 @@ export class App extends Component {
             <BrowserRouter>
                 <div>
                     <div className="row">
-                        <div className="col-xl-3 col-lg-4 col-md-5 col-6">
+                        <div className="col-xl-3 col-lg-4 col-md-5 d-none d-md-block">
                             <Leftbar />
                         </div>
-                        <div className="col-xl-9 col-lg-8 col-md-7 col-6">
+                        <div className="col-xl-9 col-lg-8 col-md-7 col-12">
                             <Header />
                             <Switch>
                                 <Route
                                     exact path='/'
                                     render={(props) => <Main {...props} handleSound={this.handleSound} />}
                                 />
+                                <Route path='/playlist/:id' render={(props) => <ShowPlaylist {...props} handleSound={this.handleSound} />} />
+                                <Route path='/artist/:id' render={(props) => <ShowArtists {...props} handleSound={this.handleSound} />} />
                                 <LoginRoute path="/login" component={Login} />
+                                
                             </Switch>
                         </div>
                     </div>
-                    <Player soundtrack = {this.state.soundtrack}/>
+                    <Player soundtrack = {this.state.soundtrack} string = {typeof(this.state.soundtrack) == 'string' ? true : false } />
                 </div>
             </BrowserRouter>
         )
