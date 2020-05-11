@@ -1,6 +1,13 @@
 # Spotify Clone
 
 A web version of Spotify made (being made) using ReactJS and Laravel, besides using laravel passport for authentication. 
+
+## Available Features so far
+<ul>
+    <li>Login</li>
+    <li>Listen to a single song, to a playlist or to an artist</li>
+    <li>Create a playlist (if you're logged in)</li>
+</ul>
 ## Getting Started
 
 Clone the project repository by running the command below if you use SSH
