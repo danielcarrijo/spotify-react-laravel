@@ -20,6 +20,7 @@ Route::get('/logout','UserController@logout');
 
 Route::post('/playlist','PlaylistController@store')->middleware('auth:api');
 Route::get('/playlist/{id}','PlaylistController@show');
+Route::get('/playlist','PlaylistController@index');
 
  Route::get('/audio/{folder}/{filename}','SongController@listenAudio');
  Route::post('/song','SongController@store');

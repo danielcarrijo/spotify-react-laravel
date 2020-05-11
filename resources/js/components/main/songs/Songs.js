@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import Song from './Song'
 export class Songs extends Component {
     constructor(props) {
         super(props)
@@ -12,7 +12,7 @@ export class Songs extends Component {
     }
     render() {
         const songs = this.props.songs
-        const artists = this.props.artists
+        const artists = this.props.artists ? this.props.artists : null
         return (
             <div className="container mt-2">
                 {songs.map((song, index) => (
@@ -22,12 +22,7 @@ export class Songs extends Component {
                         </div>
                         <div className="col-11">
                             <div className="container-fluid">
-                                <div className="row">
-                                    <span className="text-white font-weight-bold" style={{fontSize: '12pt'}}>{song.title}</span>
-                                </div>
-                                <div className="row">
-                                    <span style={{color :'rgba(255,255,255,0.5)', fontSize :'10pt'}}>{artists.name} &bull; {song.title}</span>
-                                </div>
+                                <Song song={song} />
                             </div>
                             
                         </div>

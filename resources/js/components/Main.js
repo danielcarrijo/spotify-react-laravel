@@ -7,7 +7,8 @@ export class Main extends Component {
     constructor(props) {
         super(props),
         this.state = {
-            artists : []
+            artists : [],
+            playlists: [] 
         }
     }
     componentDidMount() {
@@ -16,9 +17,16 @@ export class Main extends Component {
                 artists : response.data
             })
         })
+        axios.get('api/playlist/').then(res => {
+            this.setState({
+                playlists : res.data
+            })
+        })
     }
     render() {
         const artists = this.state.artists.slice(0,4)
+        const playlists = this.state.playlists.slice(0,4)
+        console.log(playlists)
         return (
             <div style={{background: "#202020", height:'550px'}} id="songs">
                 <div className="container mt-3" >
@@ -26,10 +34,22 @@ export class Main extends Component {
                         <span className="text-white h3 ml-3 font-weight-bolder titulos">Artistas mais curtidos</span>
                     </div>
                     <div className="row mt-1 justify-content-center">
-                        {/* <span className="text-white">Artistas mais curtidos</span> */}
+                        
                         {artists.map(artist => (
                             <div className="col-lg-3 col-sm-6 col-9" key={artist.id}>
                                 <Link to={`/artist/${artist.id}`} ><Cards element = {artist} /></Link>
+                            </div>
+                        ))}
+                        
+                    </div>
+                    <div className="row d-flex justify-content-center mt-3">
+                        <span className="text-white h3 ml-3 font-weight-bolder titulos">Playlists pra curtir</span>
+                    </div>
+                    <div className="row mt-1 justify-content-center">
+                        
+                        {playlists.map(playlist => (
+                            <div className="col-lg-3 col-sm-6 col-9" key={playlist.id}>
+                                <Link to={`/playlist/${playlist.id}`} ><Cards element = {playlist} /></Link>
                             </div>
                         ))}
                         
