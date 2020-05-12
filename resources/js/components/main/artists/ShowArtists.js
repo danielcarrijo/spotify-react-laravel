@@ -27,7 +27,7 @@ export class ShowArtists extends Component {
         return (
             <div style={{backgroundImage: 'linear-gradient(#505050, black)'}}>
                 <Title artists = {artists} user={user}/>
-                <div style={{background: '#121212', height:'300px'}} id="songs">
+                <div style={{background: '#121212', height:'260px'}} id="songs">
                     <div className="container">
                         <div className="container mt-2">
                             <div className="row">

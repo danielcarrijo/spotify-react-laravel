@@ -13,20 +13,23 @@ class ArtistSeeder extends Seeder
     {
         $artists = [
             [
-                'name' => 'Gusttavo Lima'
+                'name' => 'Gusttavo Lima',
+                'img' => 'gusttavo_lima.png'
             ],
             [
                 'name' => 'Wesley Safadão'
             ],
             [
-                'name' => 'Zé Neto e Cristiano'
+                'name' => 'Zé Neto e Cristiano',
+                'img' => 'ze_neto_e_cristiano.png'
             ],
             [
                 'name' => 'Lexa',
                 'img' => 'lexa.png'
             ],
             [
-                'name' => 'Pedro Sampaio'
+                'name' => 'Pedro Sampaio',
+                'img' => 'pedro_sampaio.png'
             ],
             [
                 'name' => 'Jorge e Mateus'

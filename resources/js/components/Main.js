@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Cards from './main/frontpage/Cards'
-
+import Sections from './main/frontpage/Sections'
+import Cookies from 'js-cookie'
 export class Main extends Component {
     constructor(props) {
         super(props),
         this.state = {
             artists : [],
-            playlists: [] 
+            playlists: [],
+
         }
     }
     componentDidMount() {
@@ -28,32 +30,11 @@ export class Main extends Component {
         const playlists = this.state.playlists.slice(0,4)
         console.log(playlists)
         return (
-            <div style={{background: "#202020", height:'550px'}} id="songs">
+            <div style={{background: "#202020", height:'505px'}} id="songs">
                 <div className="container mt-3" >
-                    <div className="row d-flex justify-content-center">
-                        <span className="text-white h3 ml-3 font-weight-bolder titulos">Artistas mais curtidos</span>
-                    </div>
-                    <div className="row mt-1 justify-content-center">
-                        
-                        {artists.map(artist => (
-                            <div className="col-lg-3 col-sm-6 col-9" key={artist.id}>
-                                <Link to={`/artist/${artist.id}`} ><Cards element = {artist} /></Link>
-                            </div>
-                        ))}
-                        
-                    </div>
-                    <div className="row d-flex justify-content-center mt-3">
-                        <span className="text-white h3 ml-3 font-weight-bolder titulos">Playlists pra curtir</span>
-                    </div>
-                    <div className="row mt-1 justify-content-center">
-                        
-                        {playlists.map(playlist => (
-                            <div className="col-lg-3 col-sm-6 col-9" key={playlist.id}>
-                                <Link to={`/playlist/${playlist.id}`} ><Cards element = {playlist} /></Link>
-                            </div>
-                        ))}
-                        
-                    </div>
+                    <Sections name="artist" title="Artistas mais curtidos" array={artists} />
+                    <Sections name="playlist" title="Playlists pra curtir" array={playlists} />
+                    
                 </div>
             </div>
         )

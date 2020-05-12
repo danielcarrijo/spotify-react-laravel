@@ -10,13 +10,21 @@ export default function Header(props) {
             location.reload()
         })
     }
+
+    const handleBack = () => {
+        window.history.back()
+    }
+
+    const handleForward = () => {
+        window.history.forward()
+    }
   
     return (
        <div className="bg-dark p-2">
            <div className="row">
                <div className="col-4">
-                    <i className="fas fa-chevron-left mr-4 text-white ml-2"></i>
-                    <i className="fas fa-chevron-right text-white"></i> 
+                    <i className="fas fa-chevron-left mr-4 text-white ml-2" onClick={handleBack}></i>
+                    <i className="fas fa-chevron-right text-white" onClick={handleForward}></i> 
                </div>
                <div className="col-8 d-flex justify-content-end">
                    {Cookies.get('spotify.jwt') == null?
@@ -34,11 +42,9 @@ export default function Header(props) {
                    : 
                    <div className="dropdown">
                     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown button
+                        {JSON.parse(Cookies.get('spotify.user')).name}
                     </button>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a className="dropdown-item" href="#">Action</a>
-                        <span className="dropdown-item">Another action</span>
                         <span className="dropdown-item" onClick={logout}>Logout</span>
                     </div>
                     </div>

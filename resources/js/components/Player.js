@@ -139,12 +139,10 @@ export class Player extends Component {
                         <i className="fas fa-sync-alt" style={{color: this.state.loop ? 'green' : '#cecece', fontSize: '30pt', marginRight : '25px'}}  onClick={this.handleLoop}></i>
                     </div>
                     <div className="row justify-content-center mt-2" >
-                        <div className="col-12">
+                        <div className="col-10">
                             <input type="range" style={{width : '100%'}} name="time" id="time" min="0" max={this.state.duration} value={this.state.currentTime} onChange={this.handleTiming} />
                         </div>
-                    </div>
-                    <div className="row justify-content-center mt-2" >
-                        <div className="col-12">
+                        <div className="col-2">
                             <span className="text-white">{currentTime}/</span>
                             <span className="text-white">{duration}</span>
                         </div>

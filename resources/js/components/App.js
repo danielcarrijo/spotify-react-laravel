@@ -7,9 +7,10 @@ import Header from './Header';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Login from './auth/Login'
+import Register from './auth/Register'
 import ShowPlaylist from './main/playlist/ShowPlaylist'
 import ShowArtists from './main/artists/ShowArtists';
-
+import Teste from './Teste'
 const user =  () => {
     if (Cookies.get('spotify.jwt') != null) {
         console.log('entrei')
@@ -68,7 +69,7 @@ export class App extends Component {
                                 <Route path='/playlist/:id' render={(props) => <ShowPlaylist {...props} handleSound={this.handleSound} />} />
                                 <Route path='/artist/:id' render={(props) => <ShowArtists {...props} handleSound={this.handleSound} />} />
                                 <LoginRoute path="/login" component={Login} />
-                                
+                                <Route path="/register" component={Register} />
                             </Switch>
                         </div>
                     </div>

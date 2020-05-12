@@ -17,7 +17,8 @@ class SongController extends Controller
      */
     public function index()
     {
-        //
+        $songs = Song::with('artists')->get();
+        return response()->json($songs, 200);
     }
 
     // public function uploadAudio(Request $request)

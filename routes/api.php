@@ -16,13 +16,19 @@ use Illuminate\Support\Facades\Route;
 /* AUTH */
 
 Route::post('/login','UserController@login');
+Route::post('/register','UserController@register');
 Route::get('/logout','UserController@logout');
 
 Route::post('/playlist','PlaylistController@store')->middleware('auth:api');
 Route::get('/playlist/{id}','PlaylistController@show');
 Route::get('/playlist','PlaylistController@index');
+Route::get('/playlist_user','PlaylistController@playlistUser')->middleware('auth:api');
+Route::get('/playlist_add/{id}/{song_id}','PlaylistController@playlistAdd')->middleware('auth:api');
+Route::get('/playlist_delete/{id}/{song_id}','PlaylistController@playlistDelete')->middleware('auth:api');
+
 
  Route::get('/audio/{folder}/{filename}','SongController@listenAudio');
+ Route::get('/song','SongController@index');
  Route::post('/song','SongController@store');
  Route::get('/song/{id}','SongController@show');
  

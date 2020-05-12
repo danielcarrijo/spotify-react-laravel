@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Playlist;
+use App\Song;
 use Auth;
 
 class PlaylistController extends Controller
@@ -42,10 +43,23 @@ class PlaylistController extends Controller
      */
     public function show($id)
     {
-        $playlist = Playlist::with('user')->find($id);
-        return response()->json($playlist,200);
+        $playlist = Playlist::with('user')->with('songs')->find($id);
+        
+        return $playlist ? response()->json($playlist,200) : response()->json($false, 401);
     }
+    public function playlistAdd($id, $song_id) {
+        $playlist = Playlist::findorfail($id);
+        $playlist->songs()->attach($song_id);
+        $song = Song::with('artists')->find($song_id);
+        return response()->json($song,200);
 
+    }
+    public function playlistDelete($id, $song_id) {
+        $playlist = Playlist::findorfail($id);
+        $playlist->songs()->detach($song_id);
+        $song = Song::find($song_id);
+        return response()->json($song,200);
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -56,6 +70,14 @@ class PlaylistController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function playlistUser() {
+        if(Auth::check()) {
+            $playlists = Playlist::where('user_id',Auth::id())->get();
+            return response()->json($playlists, 200);
+        }
+        return response()->json("error",401);
     }
 
     /**

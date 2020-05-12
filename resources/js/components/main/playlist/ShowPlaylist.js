@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Title from  './components/Title'
 import Songs from  './../songs/Songs'
+import Cookies from 'js-cookie'
+import AddSong from './AddSong'
 export class ShowPlaylist extends Component {
     constructor(props){
         super(props)
@@ -11,53 +13,58 @@ export class ShowPlaylist extends Component {
             }, user : {
 
             },
-            songs : [
-                {
-                    id: '1',
-                    title :'A gente fez amor',
-                    gender: 'Sertanejo',
-                    artist : 'Gusttavo Lima',
-                    filename: 'gusttavo_lima/a_gente_fez_amor.mp3'
-                }, 
-                {
-                    id: '2',
-                    title :'Milu',
-                    gender: 'Sertanejo',
-                    artist : 'Gusttavo Lima',
-                    filename: 'gusttavo_lima/milu.mp3'
-                },
-                {
-                    id: '3',
-                    title :'Solteiro de Novo',
-                    gender: 'Sertanejo',
-                    artist : 'Wesley Safadão',
-                    filename: 'wesley_safadão/solteiro_de_novo.mp3'
-                },
-                {
-                    id: '4',
-                    title :'Eu não iria',
-                    gender: 'Sertanejo',
-                    artist : 'Gusttavo Lima',
-                    filename: 'gusttavo_lima/eu_não_iria.mp3'
-                },
-                {
-                    id: '5',
-                    title :'Se tem briga tem amor',
-                    gender: 'Sertanejo',
-                    artist : 'Gusttavo Limae',
-                    filename: 'gusttavo_lima/se_tem_briga_tem_amor.mp3'
-                }
-            ]
+            songs: [],
+            loaded: false
         }
+        this.handleAddSong = this.handleAddSong.bind(this)
+        this.handleDeleteSong = this.handleDeleteSong.bind(this)
     }
     componentDidMount() {
         const playlistId = this.props.match.params.id;
         axios.get(`/api/playlist/${playlistId}`).then(response => {
-            console.log(response.data)
+            console.log(response.data.songs)
             this.setState({
                 playlist: response.data,
                 user: response.data.user,
+                songs: response.data.songs,
+                loaded: true
             })
+        }).catch(err => {
+            console.log(err)
+            window.location.href='/'
+        })
+    }
+
+    componentDidUpdate(prevProps) {
+        if(prevProps.match.params.id != this.props.match.params.id) {
+            const playlistId = this.props.match.params.id;
+            axios.get(`/api/playlist/${playlistId}`).then(response => {
+                console.log(response.data.songs)
+                this.setState({
+                    playlist: response.data,
+                    user: response.data.user,
+                    songs: response.data.songs,
+                    loaded: true
+                })
+            }).catch(err => {
+                console.log(err)
+                window.location.href='/'
+            })
+        }
+    }
+
+    handleAddSong(song) {
+        const songs = this.state.songs
+        songs.push(song)
+        this.setState({
+            songs: songs 
+        }) 
+    }
+    handleDeleteSong(deletedSong) {
+        const songs = this.state.songs
+        songs.splice(songs.map(song => song.id).indexOf(deletedSong.id),1)
+        this.setState({
+            songs : songs
         })
     }
     render() {
@@ -67,13 +74,17 @@ export class ShowPlaylist extends Component {
         return (
             <div style={{backgroundImage: 'linear-gradient(#505050, #000)'}}>
                 <Title playlist = {playlist} user={user}/>
-                <div style={{background: '#121212', height:'300px'}} id="songs">
+                <div style={{background: '#121212', height:'262px'}} id="songs">
                     <div className="container">
                         <div className="container mt-2">
                             <div className="row">
                                 <div className="bg-white rounded-circle" width="10px">
                                     <i className="fas fa-play-circle text-success" style={{fontSize: '45pt'}} onClick={() => this.props.handleSound(result)}></i>
                                 </div>
+                                {Cookies.get('spotify.jwt')!=null && JSON.parse(Cookies.get('spotify.user')).id == user.id ? 
+                                    <AddSong playlistsongs = {songs} playlistId = {playlist.id} handleAddSong={this.handleAddSong} handleDeleteSong={this.handleDeleteSong}/>
+                                : ''}
+                                
                             </div>
                         </div>
                         <Songs songs={this.state.songs} array = {result} handleSound = {this.props.handleSound}/>
