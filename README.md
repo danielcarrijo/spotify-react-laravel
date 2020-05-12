@@ -4,22 +4,25 @@ A web version of Spotify made (being made) using ReactJS and Laravel, besides us
 
 ## Available Features so far
 <ul>
-    <li>Login</li>
+    <li>Login and Register</li>
     <li>Listen to a single song, to a playlist or to an artist</li>
     <li>Create a playlist (if you're logged in)</li>
+    <li>Add and Remove songs from your playlist (not from the others)</li>
+    <li>Listen to other user's playlists</li>
 </ul>
+
 ## Getting Started
 
 Clone the project repository by running the command below if you use SSH
 
 ```bash
-git clone git@github.com:danielcarrijo/spotify-react.git
+git clone git@github.com:danielcarrijo/spotify-react-laravel.git
 ```
 
 If you use https, use this instead
 
 ```bash
-git clone https://github.com/danielcarrijo/spotify-react.git
+git clone https://github.com/danielcarrijo/spotify-react-laravel.git
 ```
 
 After cloning, run:
