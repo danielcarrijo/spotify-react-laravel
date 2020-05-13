@@ -18,6 +18,12 @@ class ArtistController extends Controller
         return response()->json($artists,200);
     }
 
+    public function get4()
+    {
+        $artists = Artist::take(4)->get();
+        return response()->json($artists,200);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +47,9 @@ class ArtistController extends Controller
      */
     public function show($id)
     {
-        $artist = Artist::with('songs')->find($id);
+        $artist = Artist::with(['songs' => function($query){
+            $query->with('artists');
+        }])->find($id);
         return response()->json($artist);
     }
 

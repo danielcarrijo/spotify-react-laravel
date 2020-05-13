@@ -43,7 +43,9 @@ class PlaylistController extends Controller
      */
     public function show($id)
     {
-        $playlist = Playlist::with('user')->with('songs')->find($id);
+        $playlist = Playlist::with('user')->with(['songs' => function($query){
+            $query->with('artists');
+        }])->find($id);
         
         return $playlist ? response()->json($playlist,200) : response()->json($false, 401);
     }

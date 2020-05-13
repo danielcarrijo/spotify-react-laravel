@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Cookies from 'js-cookie'
-
+import Loader from 'react-loader-spinner'
 const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -30,6 +30,7 @@ export class Login extends Component {
                 password: '',
                 general: ''
             },
+            loading : false
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -43,6 +44,7 @@ export class Login extends Component {
         const {email, password} = this.state
         if(formValid(this.state)) {
             const error = this.state.error
+            this.setState({loading: true})
             axios.post('api/login', {email, password}).then(response => {
                 let user = response.data.user
 
@@ -52,6 +54,7 @@ export class Login extends Component {
                     // const { from } = this.props.location.state || {from: {pathname: '/'}}
                     // const { history } = this.props
                     // history.push(from.pathname)
+                    this.setState({loading:false})
                     window.location.href = '/'
                 }
             }).catch(err => {
@@ -119,7 +122,14 @@ export class Login extends Component {
                         </form>
                     </div>
                 </div>
-                
+                {this.state.loading ?
+                <Loader
+                        type="ThreeDots"
+                        color="#40ff40"
+                        height={100}
+                        width={100}
+                        timeout={10000} //10 secs
+                    /> : ''}
             </div>
         )
     }

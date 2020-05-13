@@ -20,6 +20,20 @@ export class ShowArtists extends Component {
             })
         })
     }
+
+    componentDidUpdate(prevProps) {
+        if(prevProps.match.params.id != this.props.match.params.id) {
+            const artistsId = this.props.match.params.id;
+            axios.get(`/api/artist/${artistsId}`).then(response => {
+                // console.log(response.data)
+                this.setState({
+                    artists: response.data,
+                    songs: response.data.songs,
+                })
+            })
+        }
+    }
+
     render() {
         const { artists, user } = this.state
         const songs = this.state.songs
@@ -27,12 +41,12 @@ export class ShowArtists extends Component {
         return (
             <div style={{backgroundImage: 'linear-gradient(#505050, black)'}}>
                 <Title artists = {artists} user={user}/>
-                <div style={{background: '#121212', height:'260px'}} id="songs">
+                <div style={{background: '#121212', height:'262px'}} id="songs">
                     <div className="container">
                         <div className="container mt-2">
                             <div className="row">
                                 <div className="bg-white rounded-circle" width="10px">
-                                    <i className="fas fa-play-circle text-success" style={{fontSize: '45pt'}} onClick={() => this.props.handleSound(result)}></i>
+                                    <i className="fas fa-play-circle text-success" style={{fontSize: '45pt'}} onClick={() => this.props.handleSound(songs.slice(0))}></i>
                                 </div>
                             </div>
                         </div>

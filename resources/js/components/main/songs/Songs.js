@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Loader from 'react-loader-spinner'
 import Song from './Song'
 export class Songs extends Component {
     constructor(props) {
@@ -12,11 +13,13 @@ export class Songs extends Component {
     }
     render() {
         const songs = this.props.songs
-        const artists = this.props.artists ? this.props.artists : null
+        const loaded = songs.length > 0 ? true : false
+        console.log(songs)
+        // const artists = this.props.artists ? this.props.artists : null
         return (
             <div className="container mt-2">
                 {songs.map((song, index) => (
-                    <div className="row align-items-center songs p-2" key={song.id} onClick={() => this.props.handleSound(this.props.array.slice(index))} >
+                    <div className="row align-items-center songs p-2" key={song.id} onClick={() => this.props.handleSound(songs.slice(index))} >
                         <div className="col-1">
                             <i className="fas fa-music" style={{color :'rgba(255,255,255,0.5)'}}></i>
                         </div>

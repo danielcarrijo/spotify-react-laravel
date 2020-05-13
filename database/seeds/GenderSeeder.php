@@ -13,16 +13,19 @@ class GenderSeeder extends Seeder
     {
         $genders = [
             [
-                'name' => 'sertanejo'
+                'name' => 'sertanejo',
+                'img' => 'sertanejo.jpg'
             ],
             [
-                'name' => 'funk'
+                'name' => 'funk',
+                'img' => 'funk.jpg'
             ],
             [
                 'name' => 'rock'
             ],
             [
-                'name' => 'pagode'
+                'name' => 'pagode',
+                'img' => 'pagode.jpg'
             ],
             [
                 'name' => 'axé'

@@ -10,7 +10,7 @@ import Login from './auth/Login'
 import Register from './auth/Register'
 import ShowPlaylist from './main/playlist/ShowPlaylist'
 import ShowArtists from './main/artists/ShowArtists';
-import Teste from './Teste'
+import ShowGender from './main/genders/ShowGender';
 const user =  () => {
     if (Cookies.get('spotify.jwt') != null) {
         console.log('entrei')
@@ -38,7 +38,7 @@ export class App extends Component {
     constructor() {
         super()
         this.state = {
-            soundtrack : null,
+            soundtrack : null
         }
         this.handleSound = this.handleSound.bind(this)
     }
@@ -46,7 +46,6 @@ export class App extends Component {
         // console.log(Cookies.get('spotify.jwt'))
     }
     handleSound(item) {
-        console.log(typeof(item))
         this.setState({
             soundtrack: item
         })
@@ -68,12 +67,13 @@ export class App extends Component {
                                 />
                                 <Route path='/playlist/:id' render={(props) => <ShowPlaylist {...props} handleSound={this.handleSound} />} />
                                 <Route path='/artist/:id' render={(props) => <ShowArtists {...props} handleSound={this.handleSound} />} />
+                                <Route path='/gender/:id' render={(props) => <ShowGender {...props} handleSound={this.handleSound} />} />
                                 <LoginRoute path="/login" component={Login} />
                                 <Route path="/register" component={Register} />
                             </Switch>
                         </div>
                     </div>
-                    <Player soundtrack = {this.state.soundtrack} string = {typeof(this.state.soundtrack) == 'string' ? true : false } />
+                    <Player soundtrack = {this.state.soundtrack} string = {this.state.soundtrack!= null && this.state.soundtrack.length == 0 ? true : false} />
                 </div>
             </BrowserRouter>
         )

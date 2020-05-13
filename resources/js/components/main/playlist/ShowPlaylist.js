@@ -74,12 +74,12 @@ export class ShowPlaylist extends Component {
         return (
             <div style={{backgroundImage: 'linear-gradient(#505050, #000)'}}>
                 <Title playlist = {playlist} user={user}/>
-                <div style={{background: '#121212', height:'262px'}} id="songs">
+                <div style={{background: '#121212', height:'263px'}} id="songs">
                     <div className="container">
                         <div className="container mt-2">
                             <div className="row">
                                 <div className="bg-white rounded-circle" width="10px">
-                                    <i className="fas fa-play-circle text-success" style={{fontSize: '45pt'}} onClick={() => this.props.handleSound(result)}></i>
+                                    <i className="fas fa-play-circle text-success" style={{fontSize: '45pt'}} onClick={() => this.props.handleSound(songs.slice(0))}></i>
                                 </div>
                                 {Cookies.get('spotify.jwt')!=null && JSON.parse(Cookies.get('spotify.user')).id == user.id ? 
                                     <AddSong playlistsongs = {songs} playlistId = {playlist.id} handleAddSong={this.handleAddSong} handleDeleteSong={this.handleDeleteSong}/>

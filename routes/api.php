@@ -35,3 +35,9 @@ Route::get('/playlist_delete/{id}/{song_id}','PlaylistController@playlistDelete'
  Route::post('/artist','ArtistController@store');
  Route::get('/artist','ArtistController@index');
  Route::get('/artist/{id}','ArtistController@show');
+ Route::get('/4artist','ArtistController@get4');
+
+ Route::get('/gender','GenderController@index');
+ Route::get('/4gender','GenderController@get4');
+ Route::get('/gender/{id}','GenderController@show');
+ Route::get('/gender/img/{filename}','GenderController@img');
