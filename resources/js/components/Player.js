@@ -81,8 +81,12 @@ export class Player extends Component {
         let title = null
         const played = this.state.played
         if(prevProps.soundtrack != this.props.soundtrack)  {
+            this.setState({
+                played: []
+            })
             const soundtrack = this.props.soundtrack
             if(this.props.string) {
+                console.log('entrei aqui')
                 sound = "/api/audio/"+this.props.soundtrack.filename //se for uma música só
                 title = this.props.soundtrack.title
             }

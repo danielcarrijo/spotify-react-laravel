@@ -17,7 +17,7 @@ export class Menu extends Component {
                     </div>
             </div>
             </Link>
-            <a href="#" className={`nav-link text-white ${this.props.class == '/buscar' ? 'active' : ''}`}>
+            <Link to="/buscar" className={`nav-link text-white ${this.props.class == '/buscar' ? 'active' : ''}`}>
             <div className="row ml-2" style={{color: 'white'}}>
                     <div className="col-2">
                         <i  style={li} className="fas fa-search "></i>
@@ -26,7 +26,7 @@ export class Menu extends Component {
                         <span style={title}>Buscar</span>
                     </div>
             </div>
-            </a>
+            </Link>
             <a href="#" className={`nav-link text-white ${this.props.class == 'inicio' ? 'active' : ''}`}>
                 <div className="row ml-2" style={{color: 'white'}}>
                         <div className="col-2">

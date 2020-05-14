@@ -19,7 +19,7 @@ export class Songs extends Component {
         return (
             <div className="container mt-2">
                 {songs.map((song, index) => (
-                    <div className="row align-items-center songs p-2" key={song.id} onClick={() => this.props.handleSound(songs.slice(index))} >
+                    <div className="row align-items-center songs p-2" key={song.id} onClick={() => this.props.handleSound(songs.slice(index).concat(songs.slice(0,index)))} >
                         <div className="col-1">
                             <i className="fas fa-music" style={{color :'rgba(255,255,255,0.5)'}}></i>
                         </div>

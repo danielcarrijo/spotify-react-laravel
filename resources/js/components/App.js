@@ -4,6 +4,7 @@ import Leftbar from './Leftbar'
 import Player from './Player';
 import Main from './Main';
 import Header from './Header';
+import Buscar from './search/Buscar'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Login from './auth/Login'
@@ -38,16 +39,26 @@ export class App extends Component {
     constructor() {
         super()
         this.state = {
-            soundtrack : null
+            soundtrack : null,
+            search : ''
         }
         this.handleSound = this.handleSound.bind(this)
+        this.handleSearch = this.handleSearch.bind(this)
     }
     componentDidMount() {
         // console.log(Cookies.get('spotify.jwt'))
     }
     handleSound(item) {
+        console.log(item.length)
+        console.log(typeof(item))
         this.setState({
             soundtrack: item
+        })
+    }
+    handleSearch(e) {
+        const { value } = e.target
+        this.setState({
+            search : value
         })
     }
     render() {
@@ -59,7 +70,7 @@ export class App extends Component {
                             <Leftbar />
                         </div>
                         <div className="col-xl-9 col-lg-8 col-md-7 col-12">
-                            <Header />
+                            <Header handleSearch  = {this.handleSearch}/>
                             <Switch>
                                 <Route
                                     exact path='/'
@@ -68,12 +79,13 @@ export class App extends Component {
                                 <Route path='/playlist/:id' render={(props) => <ShowPlaylist {...props} handleSound={this.handleSound} />} />
                                 <Route path='/artist/:id' render={(props) => <ShowArtists {...props} handleSound={this.handleSound} />} />
                                 <Route path='/gender/:id' render={(props) => <ShowGender {...props} handleSound={this.handleSound} />} />
+                                <Route path='/buscar' render={(props) => <Buscar {...props} search={this.state.search} handleSound={this.handleSound} />} />
                                 <LoginRoute path="/login" component={Login} />
-                                <Route path="/register" component={Register} />
+                                <LoginRoute path="/register" component={Register} />
                             </Switch>
                         </div>
                     </div>
-                    <Player soundtrack = {this.state.soundtrack} string = {this.state.soundtrack!= null && this.state.soundtrack.length == 0 ? true : false} />
+                    <Player soundtrack = {this.state.soundtrack} string = {this.state.soundtrack!= null && this.state.soundtrack.length == undefined ? true : false} />
                 </div>
             </BrowserRouter>
         )

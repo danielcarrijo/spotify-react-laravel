@@ -15,10 +15,11 @@ export class Song extends Component {
                 </div>
                 <div className="row">
                 <span style={{color :'rgba(255,255,255,0.5)', fontSize :'10pt'}}>
-                                    {song.artists.map((artist,index) => (
-                                        <span key={index}>{artist.name}{index==song.artists.length - 1 ? ' ' : ', '}</span>
-                                    ))} 
-                                    &bull; {song.title}</span>
+                    {song.artists.map((artist,index) => (
+                        <span key={index}>{artist.name}{index==song.artists.length - 1 ? ' ' : ', '}</span>
+                    ))} 
+                    &bull; {song.title}
+                </span>
                 </div>
             </div>
         )

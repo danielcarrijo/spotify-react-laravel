@@ -25,6 +25,10 @@ export class StandardLists extends Component {
             const { title } = this.state
             axios.post('api/playlist', { title }, {headers : {Accept: 'application/json', Authorization: "Bearer " +  Cookies.get('spotify.jwt')}}).then(response => {
                 window.location.href = "/playlist/"+response.data.id
+            }).catch(err =>{
+                Cookies.remove('spotify.jwt')
+                Cookies.remove('spotify.user')
+                window.location.href = "/login"
             })
         }
     }
