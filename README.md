@@ -58,7 +58,8 @@ Be sure to fill in your database details in your `.env` file before running the 
 ```bash
 php artisan migrate
 ```
-and then uncomment what is inside the function "run" in database/seeds/DatabaseSeeder.php and run. IMPORTANT:: RUN THE SEEDS BEFORE DOING ANY MANUAL INSERTION, OTHERWISE THE PIVOT TABLE WILL BE DAMAGED
+and then uncomment what is inside the function "run" in `database/seeds/DatabaseSeeder.php and run`. 
+IMPORTANT:: RUN THE SEEDS BEFORE DOING ANY MANUAL INSERTION, OTHERWISE THE PIVOT TABLE WILL BE DAMAGED
 
 ```bash
 php artisan db:seed
