@@ -2,13 +2,21 @@
 
 A web version of Spotify made (being made) using ReactJS and Laravel, besides using laravel passport for authentication. 
 
-## Available Features so far
+## Available Features 
 <ul>
     <li>Login and Register</li>
-    <li>Listen to a single song, to a playlist or to an artist</li>
+    <li>Listen to a single song, to a playlist, to an artist or to a gender</li>
     <li>Create a playlist (if you're logged in)</li>
-    <li>Add and Remove songs from your playlist (not from the others)</li>
+    <li>Add and Remove songs from your playlists (not from the others')</li>
     <li>Listen to other user's playlists</li>
+    <li>Search for your favorite songs, artists, genders, or playlists </li>
+</ul>
+
+## Upcoming Features
+<ul>
+    <li>Likes</li>
+    <li>Admin panel </li>
+    <li>Creating your own library </li>
 </ul>
 
 ## Getting Started
