@@ -18,7 +18,7 @@ class ArtistSeeder extends Seeder
             ],
             [
                 'name' => 'Wesley Safadão',
-                'img' => 'wesley_safasão.png'
+                'img' => 'wesley_safadão.png'
             ],
             [
                 'name' => 'Zé Neto e Cristiano',
