@@ -22,7 +22,7 @@ class GenderSeeder extends Seeder
             ],
             [
                 'name' => 'rock',
-                'img' => 'none.PNG'
+                'img' => 'rock.jpg'
             ],
             [
                 'name' => 'pagode',
