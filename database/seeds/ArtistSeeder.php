@@ -17,7 +17,8 @@ class ArtistSeeder extends Seeder
                 'img' => 'gusttavo_lima.png'
             ],
             [
-                'name' => 'Wesley Safadão'
+                'name' => 'Wesley Safadão',
+                'img' => 'wesley_safadão.png'
             ],
             [
                 'name' => 'Zé Neto e Cristiano',
@@ -32,32 +33,12 @@ class ArtistSeeder extends Seeder
                 'img' => 'pedro_sampaio.png'
             ],
             [
-                'name' => 'Jorge e Mateus'
-            ],
-            [
-                'name' => 'Henrique e Juliano'
-            ],
-            [
-                'name' => 'Capital Inicial'
-            ],
-            [
-                'name' => 'Red Hot Chilli Peppers'
-            ],
-            [
-                'name' => 'Ludmilla'
-            ],
-            [
-                'name' => 'Marília Mendonça'
-            ],
-            [
-                'name' => 'Anitta'
-            ],
-            [
                 'name' => 'Dilsinho',
                 'img' => 'dilsinho.png'
             ],
             [
-                'name' => 'Turma do Pagode'
+                'name' => 'Turma do Pagode',
+                'img' => 'turma_do_pagode.png'
             ]
         ];
         DB::table('artists')->insert($artists);
