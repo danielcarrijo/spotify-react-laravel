@@ -21,20 +21,27 @@ class GenderSeeder extends Seeder
                 'img' => 'funk.jpg'
             ],
             [
-                'name' => 'rock'
+                'name' => 'rock',
+                'img' => 'none.PNG'
             ],
             [
                 'name' => 'pagode',
                 'img' => 'pagode.jpg'
             ],
             [
-                'name' => 'axé'
+                'name' => 'axé',
+                'img' => 'none.PNG'
+
             ],
             [
-                'name' => 'pop'
+                'name' => 'pop',
+                'img' => 'none.PNG'
+
             ],
             [
-                'name' => 'samba'
+                'name' => 'samba',
+                'img' => 'none.PNG'
+
             ],
         ];
         DB::table('genders')->insert($genders);
