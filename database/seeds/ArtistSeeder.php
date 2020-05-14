@@ -18,7 +18,7 @@ class ArtistSeeder extends Seeder
             ],
             [
                 'name' => 'Wesley Safadão',
-                'img' => 'wesley_safadão.png'
+                'img' => 'wesley_safasão.png'
             ],
             [
                 'name' => 'Zé Neto e Cristiano',
@@ -31,6 +31,34 @@ class ArtistSeeder extends Seeder
             [
                 'name' => 'Pedro Sampaio',
                 'img' => 'pedro_sampaio.png'
+            ],
+            [
+                'name' => 'Jorge e Mateus',
+                'img' => 'none.PNG'
+            ],
+            [
+                'name' => 'Henrique e Juliano',
+                'img' => 'none.PNG'
+            ],
+            [
+                'name' => 'Capital Inicial',
+                'img' => 'none.PNG'
+            ],
+            [
+                'name' => 'Red Hot Chilli Peppers',
+                'img' => 'none.PNG'
+            ],
+            [
+                'name' => 'Ludmilla',
+                'img' => 'none.PNG'
+            ],
+            [
+                'name' => 'Marília Mendonça',
+                'img' => 'none.PNG'
+            ],
+            [
+                'name' => 'Anitta',
+                'img' => 'none.PNG'
             ],
             [
                 'name' => 'Dilsinho',
